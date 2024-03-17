@@ -1,0 +1,19 @@
+sudo: required
+language: generic 
+services:
+  - docker
+
+before_install:
+  - docker build -t muneeb127/react-test -f ./client/Dockerfile.dev ./client
+  
+# Running test scripts for client folder
+script:
+  - docker run -e CI=true muneeb127/react-test npm test
+
+# Building images from prod docker file
+after_success:
+  - docker build -t muneeb127/multi-client ./client
+  - docker build -t muneeb127/multi-nginx ./nginx
+  - docker build -t muneeb127/multi-server ./server
+  - docker build -t muneeb127/multi-worker ./worker
+  
