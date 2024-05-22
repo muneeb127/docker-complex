@@ -16,4 +16,6 @@ after_success:
   - docker build -t muneeb127/multi-nginx ./nginx
   - docker build -t muneeb127/multi-server ./server
   - docker build -t muneeb127/multi-worker ./worker
+
+  #Take those images and push to docker hub
   
